@@ -18,7 +18,7 @@ class ChessBoard:
     def __init__(self):
         self._build_board()
         self.status()
-        print('*******Board*******')
+        # print('*******Board*******')
 
 
     def status(self):
