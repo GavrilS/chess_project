@@ -1,4 +1,4 @@
-from basic import ChessPiece
+from chess_pieces.basic import ChessPiece
 
 
 class Bishop(ChessPiece):

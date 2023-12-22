@@ -1,10 +1,10 @@
-from models.chess_board import ChessBoard
-from models.chess_pieces.pawn import Pawn
-from models.chess_pieces.rook import Rook
-from models.chess_pieces.knight import Knight
-from models.chess_pieces.bishop import Bishop
-from models.chess_pieces.queen import Queen
-from models.chess_pieces.king import King
+from chess_board import ChessBoard
+from chess_pieces.pawn import Pawn
+from chess_pieces.rook import Rook
+from chess_pieces.knight import Knight
+from chess_pieces.bishop import Bishop
+from chess_pieces.queen import Queen
+from chess_pieces.king import King
 
 
 
