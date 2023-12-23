@@ -1,6 +1,9 @@
 """This is the class that will implement the chess board."""
 from chess_pieces.basic import ChessPiece
+from board_components.board_square import BoardSquare
 
+ROWS = [1, 2, 3, 4, 5, 6, 7, 8]
+COLS = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']
 WHITE_FIELD_VALUE = 0
 BLACK_FIELD_VALUE = 1
 POS_ONE_ROWS = (0, 1)
@@ -10,6 +13,7 @@ KNIGHT_POS = (1, 6)
 BISHOP_POS = (2, 5)
 ROYAL_POS = (3, 4)
 PAWN_POS = (0, 1, 2, 3, 4, 5, 6, 7)
+
 
 
 class ChessBoard:
@@ -98,25 +102,42 @@ class ChessBoard:
                 exit()
 
 
-    def _build_board(self):
+    # Updated build board method as a matrix of BoardSquare objects
+    def __build_board(self):
         board = []
-        current_field_val = WHITE_FIELD_VALUE
+        current_color = 'black'
         for i in range(8):
             row = []
             board.append(row)
             for j in range(8):
-                board[i].append(current_field_val)
-                if current_field_val == 0:
-                    current_field_val = 1
+                current_position = COLS[j] + ROWS[i]
+                square = BoardSquare(position=current_position, color=current_color)
+                board[i].append(square)
+                if current_color == 'black':
+                    current_color = 'white'
                 else:
-                    current_field_val = 0
+                    current_color = 'black'
 
-            if current_field_val == 0:
-                current_field_val = 1
-            else:
-                current_field_val = 0
+    # Initial method to build board as a matrix of numbers representing colors
+    # def _build_board(self):
+    #     board = []
+    #     current_field_val = WHITE_FIELD_VALUE
+    #     for i in range(8):
+    #         row = []
+    #         board.append(row)
+    #         for j in range(8):
+    #             board[i].append(current_field_val)
+    #             if current_field_val == 0:
+    #                 current_field_val = 1
+    #             else:
+    #                 current_field_val = 0
 
-        self._board = board
+    #         if current_field_val == 0:
+    #             current_field_val = 1
+    #         else:
+    #             current_field_val = 0
+
+    #     self._board = board
 
 
 

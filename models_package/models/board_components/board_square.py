@@ -4,7 +4,7 @@ from chess_pieces.basic import ChessPiece
 
 class BoardSquare:
 
-    def __init__(self, pos, color, piece=None):
+    def __init__(self, position, color, piece=None):
         self._position = position
         self._color = color
         self._piece = piece
