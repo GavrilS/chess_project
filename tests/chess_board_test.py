@@ -30,6 +30,8 @@ def create_chess_set(set_color='white'):
     chess_set.append(Queen(color=set_color))
     chess_set.append(King(color=set_color))
 
+    return chess_set
+
 
 
 if __name__=='__main__':

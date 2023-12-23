@@ -36,21 +36,27 @@ class ChessBoard:
             non_pawn_row = POS_ONE_ROWS[0]
             if piece.rank == 'pawn':
                 col = self._check_initial_pos(row=pawn_row, columns=PAWN_POS)
+                print('pawn initial col -> ', col)
                 self.set_piece(row=pawn_row, col=col, piece=piece)
             elif piece.rank == 'rook':
                 col = self._check_initial_pos(row=non_pawn_row, columns=ROOK_POS)
+                print('rook initial col -> ', col)
                 self.set_piece(row=non_pawn_row, col=col, piece=piece)
             elif piece.rank == 'knight':
                 col = self._check_initial_pos(row=non_pawn_row, columns=KNIGHT_POS)
+                print('knight initial col -> ', col)
                 self.set_piece(row=non_pawn_row, col=col, piece=piece)
             elif piece.rank == 'bishop':
-                col = self._check_initial_pos(row=non_pawn_row, columns=ROOK_POS)
+                col = self._check_initial_pos(row=non_pawn_row, columns=BISHOP_POS)
+                print('bishop initial col -> ', col)
                 self.set_piece(row=non_pawn_row, col=col, piece=piece)
             elif piece.rank == 'queen':
                 col = self._select_royal_pos(row=non_pawn_row, piece=piece)
+                print('queen initial col -> ', col)
                 self.set_piece(row=non_pawn_row, col=col, piece=piece)
             elif piece.rank == 'king':
                 col = self._select_royal_pos(row=non_pawn_row, piece=piece)
+                print('king initial col -> ', col)
                 self.set_piece(row=non_pawn_row, col=col, piece=piece)
 
 
@@ -79,6 +85,7 @@ class ChessBoard:
     
     def _check_initial_pos(self, row, columns):
         for i in columns:
+            print('Check initial pos columns i -> ', i)
             if not isinstance(self._board[row][i], ChessPiece):
                 return i
         print('No empty position found among the supplied options for this piece... Exiting!')
