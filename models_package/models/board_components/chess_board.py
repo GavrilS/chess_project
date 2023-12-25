@@ -66,7 +66,10 @@ class ChessBoard:
 
 
     def set_piece(self, row, col, piece):
-        self._board[row][col] = piece
+        try:
+            self._board[row][col].piece = piece
+        except Exception as e:
+            print('ERROR trying to assign piece to a specific field on the board -> \n', e)
 
 
     def _select_royal_pos(self, row, piece):
@@ -91,7 +94,7 @@ class ChessBoard:
     def _check_initial_pos(self, row, columns):
         for i in columns:
             print('Check initial pos columns i -> ', i)
-            if not isinstance(self._board[row][i], ChessPiece):
+            if not isinstance(self._board[row][i].piece, ChessPiece):
                 return i
         print('No empty position found among the supplied options for this piece... Exiting!')
         exit()
@@ -99,27 +102,34 @@ class ChessBoard:
 
     def _verify_piece(self, piece):
         if not isinstance(piece, ChessPiece):
-                print('A piece was provided that does not belong to the board... Exiting!')
-                exit()
+            print('A piece was provided that does not belong to the board... Exiting!')
+            exit()
 
 
     # Updated build board method as a matrix of BoardSquare objects
-    def __build_board(self):
+    def _build_board(self):
         board = []
         current_color = 'black'
         for i in range(8):
             row = []
             board.append(row)
             for j in range(8):
-                current_position = COLS[j] + ROWS[i]
-                self._coordinates[str(i) + ':' + j] = COLS[j] + ROWS[i]
-                self._coordinates[COLS[j] + ROWS[i]] = str(i) + ':' + j
+                current_position = COLS[j] + str(ROWS[i])
+                self._coordinates[str(i) + ':' + str(j)] = COLS[j] + str(ROWS[i])
+                self._coordinates[COLS[j] + str(ROWS[i])] = str(i) + ':' + str(j)
                 square = BoardSquare(position=current_position, color=current_color)
                 board[i].append(square)
                 if current_color == 'black':
                     current_color = 'white'
                 else:
                     current_color = 'black'
+            
+            if current_color == 'black':
+                current_color = 'white'
+            else:
+                current_color = 'black'
+        
+        self._board = board
 
     # Initial method to build board as a matrix of numbers representing colors
     # def _build_board(self):

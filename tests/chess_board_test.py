@@ -1,4 +1,4 @@
-from chess_board import ChessBoard
+from board_components.chess_board import ChessBoard
 from chess_pieces.pawn import Pawn
 from chess_pieces.rook import Rook
 from chess_pieces.knight import Knight

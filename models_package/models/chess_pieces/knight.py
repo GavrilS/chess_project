@@ -16,7 +16,7 @@ class Knight(ChessPiece):
 
 
     def __str__(self):
-        return f"{self.color[0]}{self.rank[0]}"
+        return f"{self.color[0]}{self.rank[:2]}"
 
 
     def __repr__(self):
