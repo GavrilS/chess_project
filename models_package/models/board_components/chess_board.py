@@ -20,6 +20,7 @@ class ChessBoard:
     
 
     def __init__(self):
+        self._coordinates = {}
         self._build_board()
         self.status()
         # print('*******Board*******')
@@ -111,6 +112,8 @@ class ChessBoard:
             board.append(row)
             for j in range(8):
                 current_position = COLS[j] + ROWS[i]
+                self._coordinates[str(i) + ':' + j] = COLS[j] + ROWS[i]
+                self._coordinates[COLS[j] + ROWS[i]] = str(i) + ':' + j
                 square = BoardSquare(position=current_position, color=current_color)
                 board[i].append(square)
                 if current_color == 'black':
@@ -138,6 +141,12 @@ class ChessBoard:
     #             current_field_val = 0
 
     #     self._board = board
+
+
+    def get_coordinates(self, value=None):
+        if not value:
+            return self._coordinates
+        return self._coordinates[value]
 
 
 
