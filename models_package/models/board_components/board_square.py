@@ -34,3 +34,15 @@ class BoardSquare:
     @piece.deleter
     def piece(self):
         self._piece = None
+
+
+    def __str__(self):
+        if not self._piece:
+            return f"{self._position}:{self._color[0]}"
+        return f"{self._position}:{self._color[0]}:{self._piece}"
+
+
+    def __repr__(self):
+        if not self._piece:
+            return f"BoardSquare('{self._position}', '{self._color}')"
+        return f"BoardSquare('{self._position}', '{self._color}', {self._piece})"
