@@ -4,8 +4,9 @@ from board_components.board_square import BoardSquare
 
 ROWS = [1, 2, 3, 4, 5, 6, 7, 8]
 COLS = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']
-WHITE_FIELD_VALUE = 0
-BLACK_FIELD_VALUE = 1
+# Below color values are used by the old implementation of the board
+# WHITE_FIELD_VALUE = 0
+# BLACK_FIELD_VALUE = 1
 POS_ONE_ROWS = (0, 1)
 POS_TWO_ROWS = (6, 7)
 ROOK_POS = (0, 7)
@@ -72,23 +73,43 @@ class ChessBoard:
             print('ERROR trying to assign piece to a specific field on the board -> \n', e)
 
 
+    # Updated _select_royal_pos method to make use of the BoardSquare class
     def _select_royal_pos(self, row, piece):
-        searched_field = -1
-        if piece.rank == 'queen':
-            if piece.color == 'white':
-                searched_field = WHITE_FIELD_VALUE
+        searched_color = ''
+        if piece.rank.lower() == 'queen':
+            if piece.color.lower() == 'white':
+                searched_color = 'white'
             else:
-                searched_field = BLACK_FIELD_VALUE
+                searched_color = 'black'
         else:
             if piece.color == 'white':
-                searched_field = BLACK_FIELD_VALUE
+                searched_color = 'black'
             else:
-                searched_field = WHITE_FIELD_VALUE
+                searched_color = 'white'
 
-        if self._board[row][ROYAL_POS[0]] == searched_field:
+        if self._board[row][ROYAL_POS[0]].color == searched_color:
             return ROYAL_POS[0]
         else:
             return ROYAL_POS[1]
+
+    # Initial method to select royal pieces position based on colors of the fields represented with numbers
+    # def _select_royal_pos(self, row, piece):
+    #     searched_field = -1
+    #     if piece.rank == 'queen':
+    #         if piece.color == 'white':
+    #             searched_field = WHITE_FIELD_VALUE
+    #         else:
+    #             searched_field = BLACK_FIELD_VALUE
+    #     else:
+    #         if piece.color == 'white':
+    #             searched_field = BLACK_FIELD_VALUE
+    #         else:
+    #             searched_field = WHITE_FIELD_VALUE
+
+    #     if self._board[row][ROYAL_POS[0]] == searched_field:
+    #         return ROYAL_POS[0]
+    #     else:
+    #         return ROYAL_POS[1]
 
     
     def _check_initial_pos(self, row, columns):
