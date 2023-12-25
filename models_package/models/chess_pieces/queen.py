@@ -15,6 +15,13 @@ class Queen(ChessPiece):
         pass
 
 
+    def __str__(self):
+        return f"{self.color[0]}{self.rank[0]}"
+
+
+    def __repr__(self):
+        return f"Queen('{self.color})"
+
 
 
 if __name__=='__main__':
