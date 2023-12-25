@@ -12,6 +12,7 @@ def main():
     black_set = create_chess_set(set_color='black')
     white_set = create_chess_set(set_color='white')
     board = ChessBoard()
+    print('*'*40)
     board.populate_board(black_set, white_set)
     # board.populate_board(white_set, black_set)
     board.status()

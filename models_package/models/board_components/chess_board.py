@@ -8,7 +8,7 @@ COLS = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']
 # WHITE_FIELD_VALUE = 0
 # BLACK_FIELD_VALUE = 1
 POS_ONE_ROWS = (0, 1)
-POS_TWO_ROWS = (6, 7)
+POS_TWO_ROWS = (7, 6)
 ROOK_POS = (0, 7)
 KNIGHT_POS = (1, 6)
 BISHOP_POS = (2, 5)
@@ -36,33 +36,38 @@ class ChessBoard:
 
 
     def populate_board(self, pos_one_pieces, pos_two_pieces):
-        for piece in pos_one_pieces:
+        self._color_set_pieces(pos_one_pieces, POS_ONE_ROWS)
+        self._color_set_pieces(pos_two_pieces, POS_TWO_ROWS)
+
+    
+    def _color_set_pieces(self, set_figures, rows):
+        for piece in set_figures:
             self._verify_piece(piece)
-            pawn_row = POS_ONE_ROWS[1]
-            non_pawn_row = POS_ONE_ROWS[0]
+            non_pawn_row = rows[0]
+            pawn_row = rows[1]
             if piece.rank == 'pawn':
                 col = self._check_initial_pos(row=pawn_row, columns=PAWN_POS)
-                print('pawn initial col -> ', col)
+                # print('pawn initial col -> ', col)
                 self.set_piece(row=pawn_row, col=col, piece=piece)
             elif piece.rank == 'rook':
                 col = self._check_initial_pos(row=non_pawn_row, columns=ROOK_POS)
-                print('rook initial col -> ', col)
+                # print('rook initial col -> ', col)
                 self.set_piece(row=non_pawn_row, col=col, piece=piece)
             elif piece.rank == 'knight':
                 col = self._check_initial_pos(row=non_pawn_row, columns=KNIGHT_POS)
-                print('knight initial col -> ', col)
+                # print('knight initial col -> ', col)
                 self.set_piece(row=non_pawn_row, col=col, piece=piece)
             elif piece.rank == 'bishop':
                 col = self._check_initial_pos(row=non_pawn_row, columns=BISHOP_POS)
-                print('bishop initial col -> ', col)
+                # print('bishop initial col -> ', col)
                 self.set_piece(row=non_pawn_row, col=col, piece=piece)
             elif piece.rank == 'queen':
                 col = self._select_royal_pos(row=non_pawn_row, piece=piece)
-                print('queen initial col -> ', col)
+                # print('queen initial col -> ', col)
                 self.set_piece(row=non_pawn_row, col=col, piece=piece)
             elif piece.rank == 'king':
                 col = self._select_royal_pos(row=non_pawn_row, piece=piece)
-                print('king initial col -> ', col)
+                # print('king initial col -> ', col)
                 self.set_piece(row=non_pawn_row, col=col, piece=piece)
 
 
@@ -114,7 +119,7 @@ class ChessBoard:
     
     def _check_initial_pos(self, row, columns):
         for i in columns:
-            print('Check initial pos columns i -> ', i)
+            # print('Check initial pos columns i -> ', i)
             if not isinstance(self._board[row][i].piece, ChessPiece):
                 return i
         print('No empty position found among the supplied options for this piece... Exiting!')
