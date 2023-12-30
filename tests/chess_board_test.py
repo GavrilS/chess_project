@@ -16,6 +16,8 @@ def main():
     board.populate_board(black_set, white_set)
     # board.populate_board(white_set, black_set)
     board.status()
+    print('*'*40)
+    print('current board coordinates: ', board.get_coordinates())
 
 
 def create_chess_set(set_color='white'):
