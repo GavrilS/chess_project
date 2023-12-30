@@ -13,7 +13,11 @@ class Bishop(ChessPiece):
 
 
     def move(self, board, position, next_position):
-        pass
+        possible_moves = self.check_available_moves(board, position)
+        if next_position in possible_moves:
+            return True
+        else:
+            return False
 
 
     def check_available_moves(self, board, position):
@@ -28,7 +32,7 @@ class Bishop(ChessPiece):
         while flag:
             flag = False
             if current_row-1 >= START_ROW and current_row-1 <= END_ROW and current_col-1 >= START_COL and current_col-1 <= END_COL:
-                if not board[row-1][col-1].piece or board[row-1][col-1].piece.color != self.color:
+                if not board[current_row-1][current_col-1].piece or board[current_row-1][current_col-1].piece.color != self.color:
                     possible_moves.append(str(current_row-1) + ':' + str(current_col-1))
                     current_row -= 1
                     current_col -= 1
@@ -41,7 +45,7 @@ class Bishop(ChessPiece):
         while flag:
             flag = False
             if current_row-1 >= START_ROW and current_row-1 <= END_ROW and current_col+1 >= START_COL and current_col+1 <= END_COL:
-                if not board[row-1][col+1].piece or board[row-1][col+1].piece.color != self.color:
+                if not board[current_row-1][current_col+1].piece or board[current_row-1][current_col+1].piece.color != self.color:
                     possible_moves.append(str(current_row-1) + ':' + str(current_col+1))
                     current_row -= 1
                     current_col += 1
@@ -53,6 +57,27 @@ class Bishop(ChessPiece):
         # Move down left diagonal
         while flag:
             flag = False
+            if current_row+1 >= START_ROW and current_row+1 <= END_ROW and current_col-1 >= START_COL and current_col-1 <= END_COL:
+                if not board[current_row+1][current_col-1].piece or board[current_row+1][current_col-1].piece.color != self.color:
+                    possible_moves.append(str(current_row+1) + ':' + str(current_col-1))
+                    current_row += 1
+                    current_col -= 1
+                    flag = True
+
+        current_row = row
+        current_col = col
+        flag = True
+        # Move down right diagonal
+        while flag:
+            flag = False
+            if current_row+1 >= START_ROW and current_row+1 <= END_ROW and current_col+1 >= START_COL and current_col-1 <= END_COL:
+                if not board[current_row+1][current_col+1].piece or board[current_row+1][current_col+1].piece.color != self.color:
+                    possible_moves.append(str(current_row+1) + ':' + str(current_col+1))
+                    current_row += 1
+                    current_col += 1
+                    flag = True
+
+        return possible_moves
 
 
     def __str__(self):
