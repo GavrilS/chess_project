@@ -3,6 +3,11 @@ implement.
 """
 from abc import ABC, abstractmethod, abstractproperty
 
+END_ROW = 7
+START_ROW = 0
+START_COL = 0
+END_COL = 7
+
 
 class ChessPiece(ABC):
 
@@ -19,6 +24,27 @@ class ChessPiece(ABC):
     @abstractmethod
     def check_available_moves(self, board):
         pass
+
+
+    def verify_board_raw(self, row):
+        if row >= START_ROW and row <= END_ROW:
+            return True
+        else:
+            return False
+
+    
+    def verify_board_col(self, col):
+        if col >= START_COL and col <= END_COL:
+            return True
+        else:
+            return False
+
+
+    def verify_board_piece(self, piece):
+        if not piece or piece.color != self.color:
+            return True
+        else:
+            return False
 
 
     @property
