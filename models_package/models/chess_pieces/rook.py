@@ -1,10 +1,5 @@
 from chess_pieces.basic import ChessPiece
 
-END_ROW = 7
-START_ROW = 0
-START_COL = 0
-END_COL = 7
-
 
 class Rook(ChessPiece):
 
@@ -32,8 +27,10 @@ class Rook(ChessPiece):
         # Move up the field from current position
         while flag:
             flag = False
-            if current_row-1 >= START_ROW and current_row-1 <= END_ROW:
-                if not board[current_row-1][current_col].piece or board[current_row-1][current_col].piece.color != self.color:
+            # if current_row-1 >= START_ROW and current_row-1 <= END_ROW:
+            if self.verify_board_raw(row=current_row-1):
+                # if not board[current_row-1][current_col].piece or board[current_row-1][current_col].piece.color != self.color:
+                if self.verify_board_piece(piece=board[current_row-1][current_col].piece):
                     possible_moves.append(str(current_row-1) + ':' + str(current_col))
                     current_row -= 1
                     flag = True
@@ -43,8 +40,10 @@ class Rook(ChessPiece):
         # Move down the field from current position
         while flag:
             flag = False
-            if current_row+1 >= START_ROW and current_row+1 <= END_ROW:
-                if not board[current_row+1][current_col].piece or board[current_row+1][current_col].piece.color != self.color:
+            # if current_row+1 >= START_ROW and current_row+1 <= END_ROW:
+            if self.verify_board_raw(row=current_row+1):
+                # if not board[current_row+1][current_col].piece or board[current_row+1][current_col].piece.color != self.color:
+                if self.verify_board_piece(piece=board[current_row+1][current_col].piece):
                     possible_moves.append(str(current_row+1) + ':' + str(current_col))
                     current_row += 1
                     flag = True
@@ -54,8 +53,10 @@ class Rook(ChessPiece):
         # Move to the left from current position
         while flag:
             flag = False
-            if current_col-1 >= START_COL and current_col-1 <= END_COL:
-                if not board[current_row][current_col-1].piece or board[current_row][current_col-1].piece.color != self.color:
+            # if current_col-1 >= START_COL and current_col-1 <= END_COL:
+            if self.verify_board_col(col=current_col-1):
+                # if not board[current_row][current_col-1].piece or board[current_row][current_col-1].piece.color != self.color:
+                if self.verify_board_piece(piece=board[current_row][current_col-1].piece):
                     possible_moves.append(str(current_row) + ':' + str(current_col-1))
                     current_col -= 1
                     flag = True
@@ -65,8 +66,10 @@ class Rook(ChessPiece):
         # Move to the right from current position
         while flag:
             flag = False
-            if current_col+1 >= START_COL and current_col+1 <= END_COL:
-                if not board[current_row][current_col+1].piece or board[current_row][current_col+1].piece.color != self.color:
+            # if current_col+1 >= START_COL and current_col+1 <= END_COL:
+            if self.verify_board_col(col=current_col+1):
+                # if not board[current_row][current_col+1].piece or board[current_row][current_col+1].piece.color != self.color:
+                if self.verify_board_piece(piece=board[current_row][current_col+1].piece):
                     possible_moves.append(str(current_row) + ':' + str(current_col+1))
                     current_col += 1
                     flag = True
