@@ -16,13 +16,16 @@ class ChessPiece(ABC):
         self.color = color
 
 
-    @abstractmethod
-    def move(self, board, position):
-        pass
+    def move(self, board, position, next_position):
+        possible_moves = self.check_available_moves(board, position)
+        if next_position in possible_moves:
+            return True
+        else:
+            return False
 
 
     @abstractmethod
-    def check_available_moves(self, board):
+    def check_available_moves(self, board, position):
         pass
 
 

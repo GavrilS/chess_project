@@ -7,14 +7,6 @@ class Bishop(ChessPiece):
         super().__init__(rank='bishop', color=color)
 
 
-    def move(self, board, position, next_position):
-        possible_moves = self.check_available_moves(board, position)
-        if next_position in possible_moves:
-            return True
-        else:
-            return False
-
-
     def check_available_moves(self, board, position):
         possible_moves = []
         current_coordinates = position.split(':')
