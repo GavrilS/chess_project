@@ -28,7 +28,7 @@ class Rook(ChessPiece):
         while flag:
             flag = False
             # if current_row-1 >= START_ROW and current_row-1 <= END_ROW:
-            if self.verify_board_raw(row=current_row-1):
+            if self.verify_board_row(row=current_row-1):
                 # if not board[current_row-1][current_col].piece or board[current_row-1][current_col].piece.color != self.color:
                 if self.verify_board_piece(piece=board[current_row-1][current_col].piece):
                     possible_moves.append(str(current_row-1) + ':' + str(current_col))
@@ -41,7 +41,7 @@ class Rook(ChessPiece):
         while flag:
             flag = False
             # if current_row+1 >= START_ROW and current_row+1 <= END_ROW:
-            if self.verify_board_raw(row=current_row+1):
+            if self.verify_board_row(row=current_row+1):
                 # if not board[current_row+1][current_col].piece or board[current_row+1][current_col].piece.color != self.color:
                 if self.verify_board_piece(piece=board[current_row+1][current_col].piece):
                     possible_moves.append(str(current_row+1) + ':' + str(current_col))

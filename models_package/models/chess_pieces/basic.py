@@ -26,7 +26,7 @@ class ChessPiece(ABC):
         pass
 
 
-    def verify_board_raw(self, row):
+    def verify_board_row(self, row):
         if row >= START_ROW and row <= END_ROW:
             return True
         else:

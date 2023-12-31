@@ -1,10 +1,5 @@
 from chess_pieces.basic import ChessPiece
 
-END_ROW = 7
-START_ROW = 0
-START_COL = 0
-END_COL = 7
-
 
 class Bishop(ChessPiece):
 
@@ -31,8 +26,10 @@ class Bishop(ChessPiece):
         # Move up left diagonal
         while flag:
             flag = False
-            if current_row-1 >= START_ROW and current_row-1 <= END_ROW and current_col-1 >= START_COL and current_col-1 <= END_COL:
-                if not board[current_row-1][current_col-1].piece or board[current_row-1][current_col-1].piece.color != self.color:
+            # if current_row-1 >= START_ROW and current_row-1 <= END_ROW and current_col-1 >= START_COL and current_col-1 <= END_COL:
+            if self.verify_board_row(row=current_row-1) and self.verify_board_col(col=current_col-1):
+                # if not board[current_row-1][current_col-1].piece or board[current_row-1][current_col-1].piece.color != self.color:
+                if self.verify_board_piece(board[current_row-1][current_col-1].piece):
                     possible_moves.append(str(current_row-1) + ':' + str(current_col-1))
                     current_row -= 1
                     current_col -= 1
@@ -44,8 +41,10 @@ class Bishop(ChessPiece):
         # Move up right diagonal
         while flag:
             flag = False
-            if current_row-1 >= START_ROW and current_row-1 <= END_ROW and current_col+1 >= START_COL and current_col+1 <= END_COL:
-                if not board[current_row-1][current_col+1].piece or board[current_row-1][current_col+1].piece.color != self.color:
+            # if current_row-1 >= START_ROW and current_row-1 <= END_ROW and current_col+1 >= START_COL and current_col+1 <= END_COL:
+            if self.verify_board_row(row=current_row-1) and self.verify_board_col(col=current_col+1):
+                # if not board[current_row-1][current_col+1].piece or board[current_row-1][current_col+1].piece.color != self.color:
+                if self.verify_board_piece(board[current_row-1][current_col+1].piece):
                     possible_moves.append(str(current_row-1) + ':' + str(current_col+1))
                     current_row -= 1
                     current_col += 1
@@ -57,8 +56,10 @@ class Bishop(ChessPiece):
         # Move down left diagonal
         while flag:
             flag = False
-            if current_row+1 >= START_ROW and current_row+1 <= END_ROW and current_col-1 >= START_COL and current_col-1 <= END_COL:
-                if not board[current_row+1][current_col-1].piece or board[current_row+1][current_col-1].piece.color != self.color:
+            # if current_row+1 >= START_ROW and current_row+1 <= END_ROW and current_col-1 >= START_COL and current_col-1 <= END_COL:
+            if self.verify_board_row(current_row+1) and self.verify_board_col(current_col-1):
+                # if not board[current_row+1][current_col-1].piece or board[current_row+1][current_col-1].piece.color != self.color:
+                if self.verify_board_piece(board[current_row+1][current_col-1].piece):
                     possible_moves.append(str(current_row+1) + ':' + str(current_col-1))
                     current_row += 1
                     current_col -= 1
@@ -70,8 +71,10 @@ class Bishop(ChessPiece):
         # Move down right diagonal
         while flag:
             flag = False
-            if current_row+1 >= START_ROW and current_row+1 <= END_ROW and current_col+1 >= START_COL and current_col-1 <= END_COL:
-                if not board[current_row+1][current_col+1].piece or board[current_row+1][current_col+1].piece.color != self.color:
+            # if current_row+1 >= START_ROW and current_row+1 <= END_ROW and current_col+1 >= START_COL and current_col-1 <= END_COL:
+            if self.verify_board_row(current_row+1) and self.verify_board_col(current_col+1):
+                # if not board[current_row+1][current_col+1].piece or board[current_row+1][current_col+1].piece.color != self.color:
+                if self.verify_board_piece(board[current_row+1][current_col+1].piece):
                     possible_moves.append(str(current_row+1) + ':' + str(current_col+1))
                     current_row += 1
                     current_col += 1
