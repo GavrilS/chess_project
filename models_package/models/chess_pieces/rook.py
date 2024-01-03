@@ -3,8 +3,8 @@ from chess_pieces.basic import ChessPiece
 
 class Rook(ChessPiece):
 
-    def __init__(self, color='white'):
-        super().__init__(rank='rook', color=color)
+    def __init__(self, color='white', start_position='low'):
+        super().__init__(rank='rook', color=color, start_position=start_position)
 
 
     def check_available_moves(self, board, position):

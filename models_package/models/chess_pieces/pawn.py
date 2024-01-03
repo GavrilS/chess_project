@@ -3,9 +3,8 @@ from chess_pieces.basic import ChessPiece
 
 class Pawn(ChessPiece):
 
-    def __init__(self, color='white', initial_position='low'):
-        super().__init__(rank='pawn', color=color)
-        self._initial_position = initial_position
+    def __init__(self, color='white', start_position='low'):
+        super().__init__(rank='pawn', color=color, start_position=start_position)
 
 
     def check_available_moves(self, board, position):
@@ -13,7 +12,7 @@ class Pawn(ChessPiece):
         current_coordinates = position.split(':')
         int(row) = current_coordinates[0]
         int(col) = current_coordinates[1]
-        if initial_position == 'low':
+        if self.start_position == 'low':
             # if row + 1 > FINAL_LOW_ROW and row + 1 <= FINAL_HIGH_ROW:
             if self.verify_board_row(row+1):
                 # if col - 1 >= START_COL and col - 1 < END_COL:
@@ -57,12 +56,6 @@ class Pawn(ChessPiece):
 
     def __repr__(self):
         return f"Pawn('{self.color})"
-
-
-    @property
-    def position(self):
-        return self._initial_position
-
 
 
 
