@@ -32,6 +32,14 @@ class ChessPiece(ABC):
             return False
 
 
+    def get_coordinates(self, position):
+        current_coordinates = postion.split(':')
+        int(row) = current_coordinates[0]
+        int(col) = current_coordinates[1]
+
+        return row, col
+
+
     @abstractmethod
     def check_available_moves(self, board, position):
         pass

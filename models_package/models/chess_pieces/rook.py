@@ -9,9 +9,7 @@ class Rook(ChessPiece):
 
     def check_available_moves(self, board, position):
         possible_moves = []
-        current_coordinates = position.spli(':')
-        int(row) = current_coordinates[0]
-        int(col) = current_coordinates[1]
+        row, col = self.get_coordinates(position)
         flag = True
         current_row = row
         current_col = col

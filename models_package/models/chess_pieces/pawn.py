@@ -9,9 +9,7 @@ class Pawn(ChessPiece):
 
     def check_available_moves(self, board, position):
         possible_moves = []
-        current_coordinates = position.split(':')
-        int(row) = current_coordinates[0]
-        int(col) = current_coordinates[1]
+        row, col = self.get_coordinates(position)
         if self.start_position == 'low':
             # if row + 1 > FINAL_LOW_ROW and row + 1 <= FINAL_HIGH_ROW:
             if self.verify_board_row(row+1):

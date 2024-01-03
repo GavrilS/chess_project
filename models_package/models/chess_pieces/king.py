@@ -9,9 +9,7 @@ class King(ChessPiece):
 
     def check_available_moves(self, board, position):
         possible_moves = []
-        current_coordinates = position.split(':')
-        int(row) = current_coordinates[0]
-        int(col) = current_coordinates[1]
+        row, col = self.get_coordinates(position)
         
         # Check above row
         if self.verify_board_row(row-1):
@@ -43,6 +41,16 @@ class King(ChessPiece):
             possible_moves.append(str(row) + ':' + str(col+1))
 
         return possible_moves
+
+
+    def test_for_check(self, board, position):
+        pass
+
+    
+    def pawn_check(self, board, position):
+        row, col = self.get_coordinates(position)
+        if self.start_position == 'low':
+
 
 
     def __str__(self):

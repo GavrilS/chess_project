@@ -9,9 +9,7 @@ class Knight(ChessPiece):
 
     def check_available_moves(self, board, position):
         possible_moves = []
-        current_coordinates = position.split(':')
-        int(row) = current_coordinates[0]
-        int(col) = current_coordinates[1]
+        row, col = self.get_coordinates(position)
 
         # Check above positions - row + 2
         if self.verify_board_row(row+2):
