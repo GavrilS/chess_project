@@ -46,6 +46,70 @@ class King(ChessPiece):
     def test_for_check(self, board, position):
         pass
 
+
+    def rook_chess(self, board, position):
+        in_check = False
+        row, col = self.get_coordinates(position)
+        flag = True
+        current_row = row
+        current_col = col
+
+        # Move up from the current field
+        while flag:
+            if self.verify_board_row(current_row-1):
+                piece = board[current_row-1][current_col]
+                if self.verify_board_piece_for_chess(piece, 'rook'):
+                    in_check = True
+                    return in_check
+                elif piece:
+                    flag = False
+                else:
+                    current_row -= 1
+
+        flag = True
+        current_row = row
+        # Move down from the current position
+        while flag:
+            if self.verify_board_row(current_row+1):
+                piece = board[current_row+1][current_col]
+                if self.verify_board_piece_for_chess(piece, 'rook'):
+                    in_check = True
+                    return in_check
+                elif piece:
+                    flag = False
+                else:
+                    current_row += 1
+
+        flag = True
+        current_row = row
+        # Move to the left from the current position
+        while flag:
+            if self.verify_board_col(current_col-1):
+                piece = board[current_row][current_col-1]
+                if self.verify_board_piece_for_chess(piece, 'rook'):
+                    in_check = True
+                    return in_check
+                elif piece:
+                    flag = False
+                else:
+                    current_col -= 1
+
+        flag = True
+        current_col = col
+        # Move to the right from the current position
+        while flag:
+            if self.verify_board_col(current_col+1):
+                piece = board[current_row][current_col+1]
+                if self.verify_board_piece_for_chess(piece, 'rook'):
+                    in_check = True
+                    return in_check
+                elif piece:
+                    flag = False
+                else:
+                    current_col += 1
+
+        return in_check
+
     
     def pawn_check(self, board, position):
         in_check = False
@@ -53,28 +117,35 @@ class King(ChessPiece):
         if self.start_position == 'low':
             if self.verify_board_row(row+1) and self.verify_board_col(col-1):
                 field_piece = board[row+1][col-1].piece
-                if self.verify_board_piece(field_piece) and field_piece.rank == 'pawn':
+                if self.verify_board_piece_for_chess(field_piece) and field_piece.rank == 'pawn':
                     in_check = True
                     return in_check
 
             if self.verify_board_row(row+1) and self.verify_board_col(col+1):
                 field_piece = board[row+1][col+1]:
-                if self.verify_board_piece(field_piece) and field_piece.rank == 'pawn':
+                if self.verify_board_piece_for_chess(field_piece, 'pawn'):
                     in_check = True
 
         else:
             if self.verify_board_row(row-1) and self.verify_board_col(col-1):
                 field_piece = board[row-1][col-1].piece
-                if self.verify_board_piece(field_piece) and field_piece.rank == 'pawn':
+                if self.verify_board_piece_for_chess(field_piece, 'pawn'):
                     in_check = True
                     return in_check
             
             if self.verify_board_row(row-1) and self.verify_board_col(col+1):
                 field_piece = board[row-1][col+1].piece
-                if self.verify_board_piece(field_piece) and field_piece.rank == 'pawn':
+                if self.verify_board_piece_for_chess(field_piece, 'pawn'):
                     in_check = True
 
         return in_check
+
+
+    def verify_board_piece_for_chess(self, piece, rank):
+        flag = True
+        if not piece or piece.color == self.color:
+            flag = False
+        return flag and piece.rank == rank
 
 
     def __str__(self):
