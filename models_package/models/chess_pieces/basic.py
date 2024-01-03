@@ -10,10 +10,18 @@ END_COL = 7
 
 
 class ChessPiece(ABC):
+    '''The basic chess piece class; all pieces inherit from this one.
+        Required parameters:
+            rank: the type of piece - queen, king, pawn...
+            color: the color of the piece - white or black
+            start_position: 2 options - low(starts at the rows with index 0 and 1) or high(starts at rows with 
+            index 6 or 7)
+    '''
 
-    def __init__(self, rank='empty', color='white'):
+    def __init__(self, rank='empty', color='white', start_position='low'):
         self.rank = rank
         self.color = color
+        self.start_position = start_position
 
 
     def move(self, board, position, next_position):
@@ -68,6 +76,16 @@ class ChessPiece(ABC):
     @color.setter
     def color(self, color):
         self.__color = color
+
+
+    @property
+    def start_position(self):
+        return self.__start_position
+
+
+    @start_position.setter
+    def start_position(self, start_position):
+        self.__start_position = start_position
 
 
 
