@@ -48,9 +48,33 @@ class King(ChessPiece):
 
     
     def pawn_check(self, board, position):
+        in_check = False
         row, col = self.get_coordinates(position)
         if self.start_position == 'low':
+            if self.verify_board_row(row+1) and self.verify_board_col(col-1):
+                field_piece = board[row+1][col-1].piece
+                if self.verify_board_piece(field_piece) and field_piece.rank == 'pawn':
+                    in_check = True
+                    return in_check
 
+            if self.verify_board_row(row+1) and self.verify_board_col(col+1):
+                field_piece = board[row+1][col+1]:
+                if self.verify_board_piece(field_piece) and field_piece.rank == 'pawn':
+                    in_check = True
+
+        else:
+            if self.verify_board_row(row-1) and self.verify_board_col(col-1):
+                field_piece = board[row-1][col-1].piece
+                if self.verify_board_piece(field_piece) and field_piece.rank == 'pawn':
+                    in_check = True
+                    return in_check
+            
+            if self.verify_board_row(row-1) and self.verify_board_col(col+1):
+                field_piece = board[row-1][col+1].piece
+                if self.verify_board_piece(field_piece) and field_piece.rank == 'pawn':
+                    in_check = True
+
+        return in_check
 
 
     def __str__(self):
