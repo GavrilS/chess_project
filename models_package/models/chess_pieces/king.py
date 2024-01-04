@@ -47,7 +47,48 @@ class King(ChessPiece):
         pass
 
 
-    def rook_chess(self, board, position):
+    def bishop_check(self, board, position):
+        in_check = False
+        row, col = self.get_coordinates(position)
+        flag = True
+        current_row = row
+        current_col = col
+
+        # Move up left diagonal to test for bishop check
+        while flag:
+            if self.verify_board_row(current_row-1) and self.verify_board_col(current_col-1):
+                piece = board[current_row-1][current_col-1].piece
+                if self.verify_board_piece_for_check(piece, 'bishop'):
+                    in_check = True
+                    return in_check
+                elif piece:
+                    flag = False
+                else:
+                    current_row-=1
+                    current_col-=1
+            else:
+                break
+
+        current_row = row
+        current_col = col
+        flag = True
+        # Move up right diagonal to test for bishop check
+        while flag:
+            if self.verify_board_row(current_row-1) and self.verify_board_col(current_col+1):
+                piece = board[current_row-1][current_col+1]
+                if self.verify_board_piece_for_check(piece, 'bishop'):
+                    in_check = True
+                    return in_check
+                elif piece:
+                    flag = False
+                else:
+                    current_row-=1
+                    current_col+=1
+            else:
+                break
+
+
+    def rook_check(self, board, position):
         in_check = False
         row, col = self.get_coordinates(position)
         flag = True
@@ -58,13 +99,15 @@ class King(ChessPiece):
         while flag:
             if self.verify_board_row(current_row-1):
                 piece = board[current_row-1][current_col]
-                if self.verify_board_piece_for_chess(piece, 'rook'):
+                if self.verify_board_piece_for_check(piece, 'rook'):
                     in_check = True
                     return in_check
                 elif piece:
                     flag = False
                 else:
                     current_row -= 1
+            else:
+                break
 
         flag = True
         current_row = row
@@ -72,13 +115,15 @@ class King(ChessPiece):
         while flag:
             if self.verify_board_row(current_row+1):
                 piece = board[current_row+1][current_col]
-                if self.verify_board_piece_for_chess(piece, 'rook'):
+                if self.verify_board_piece_for_check(piece, 'rook'):
                     in_check = True
                     return in_check
                 elif piece:
                     flag = False
                 else:
                     current_row += 1
+            else:
+                break
 
         flag = True
         current_row = row
@@ -86,13 +131,15 @@ class King(ChessPiece):
         while flag:
             if self.verify_board_col(current_col-1):
                 piece = board[current_row][current_col-1]
-                if self.verify_board_piece_for_chess(piece, 'rook'):
+                if self.verify_board_piece_for_check(piece, 'rook'):
                     in_check = True
                     return in_check
                 elif piece:
                     flag = False
                 else:
                     current_col -= 1
+            else:
+                break
 
         flag = True
         current_col = col
@@ -100,13 +147,15 @@ class King(ChessPiece):
         while flag:
             if self.verify_board_col(current_col+1):
                 piece = board[current_row][current_col+1]
-                if self.verify_board_piece_for_chess(piece, 'rook'):
+                if self.verify_board_piece_for_check(piece, 'rook'):
                     in_check = True
                     return in_check
                 elif piece:
                     flag = False
                 else:
                     current_col += 1
+            else:
+                break
 
         return in_check
 
@@ -117,25 +166,25 @@ class King(ChessPiece):
         if self.start_position == 'low':
             if self.verify_board_row(row+1) and self.verify_board_col(col-1):
                 field_piece = board[row+1][col-1].piece
-                if self.verify_board_piece_for_chess(field_piece) and field_piece.rank == 'pawn':
+                if self.verify_board_piece_for_check(field_piece) and field_piece.rank == 'pawn':
                     in_check = True
                     return in_check
 
             if self.verify_board_row(row+1) and self.verify_board_col(col+1):
                 field_piece = board[row+1][col+1]:
-                if self.verify_board_piece_for_chess(field_piece, 'pawn'):
+                if self.verify_board_piece_for_check(field_piece, 'pawn'):
                     in_check = True
 
         else:
             if self.verify_board_row(row-1) and self.verify_board_col(col-1):
                 field_piece = board[row-1][col-1].piece
-                if self.verify_board_piece_for_chess(field_piece, 'pawn'):
+                if self.verify_board_piece_for_check(field_piece, 'pawn'):
                     in_check = True
                     return in_check
             
             if self.verify_board_row(row-1) and self.verify_board_col(col+1):
                 field_piece = board[row-1][col+1].piece
-                if self.verify_board_piece_for_chess(field_piece, 'pawn'):
+                if self.verify_board_piece_for_check(field_piece, 'pawn'):
                     in_check = True
 
         return in_check
