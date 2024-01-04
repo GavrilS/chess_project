@@ -87,6 +87,44 @@ class King(ChessPiece):
             else:
                 break
 
+        current_row = row
+        current_col = col
+        flag = True
+        # Move down left diagonal to test for bishop check
+        while flag:
+            if self.verify_board_row(current_row+1) and self.verify_board_col(current_col-1):
+                piece = board[current_row+1][current_col-1].piece
+                if self.verify_board_piece_for_check(piece, 'bishop'):
+                    in_check = True
+                    return in_check
+                elif piece:
+                    flag = False
+                else:
+                    current_row+=1
+                    current_col-=1
+            else:
+                break
+
+        current_row = row
+        current_col = col
+        flag = True
+        # Move down right diagonal to test for bishop check
+        while flag:
+            if self.verify_board_row(current_row+1) and self.verify_board_col(current_col+1):
+                piece = board[current_row+1][current_col+1].piece
+                if self.verify_board_piece_for_check(piece, 'bishop'):
+                    in_check = True
+                    return in_check
+                elif piece:
+                    flag = False
+                else:
+                    current_row+=1
+                    current_col+=1
+            else:
+                break
+
+        return in_check
+
 
     def rook_check(self, board, position):
         in_check = False
