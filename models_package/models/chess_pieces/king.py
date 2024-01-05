@@ -47,7 +47,43 @@ class King(ChessPiece):
         pass
 
 
-    
+    def knight_check(self, board, position):
+        in_check = False
+        row, col = self.get_coordinates(position)
+        
+        # Check above positions for knight check
+        if self.verify_board_row(row+2):
+            if self.verify_board_col(col-1) and self.verify_board_piece_for_check(board[row+2][col-1].piece, 'knight'):
+                return True
+
+            if self.verify_board_col(col+1) and self.verify_board_piece_for_check(board[row+2][col+1].piece, 'knight'):
+                return True
+
+        # Check below positions for knight check
+        if self.verify_board_row(row-2):
+            if self.verify_board_col(col-1) and self.verify_board_piece_for_check(board[row-2][col-1].piece, 'knight'):
+                return True
+
+            if self.verify_board_col(col+1) and self.verify_board_piece_for_check(board[row-2][col+1].piece, 'knight'):
+                return True
+
+        # Check positions to the left for knight check
+        if self.verify_board_col(col-2):
+            if self.verify_board_row(row-1) and self.verify_board_piece_for_check(board[row-1][col-2].piece, 'knight'):
+                return True
+
+            if self.verify_board_row(row+1) and self.verify_board_piece_for_check(board[row+1][col-2].piece, 'knight'):
+                return True
+
+        # Check positions to the right for knight check
+        if self.verify_board_row(col+2):
+            if self.verify_board_row(row-1) and self.verify_board_piece_for_check(board[row-1][col+2].piece, 'knight'):
+                return True
+
+            if self.verify_board_row(row+1) and self.verify_board_piece_for_check(board[row+1][col+2].piece, 'knight'):
+                return True
+
+        return in_check
 
 
     def bishop_queen_check(self, board, position):
@@ -232,10 +268,9 @@ class King(ChessPiece):
 
 
     def verify_board_piece_for_chess(self, piece, rank):
-        flag = True
         if not piece or piece.color == self.color:
-            flag = False
-        return flag and piece.rank == rank
+            return False
+        return piece.rank == rank
 
 
     def __str__(self):
