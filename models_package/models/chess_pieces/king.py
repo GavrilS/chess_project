@@ -47,7 +47,10 @@ class King(ChessPiece):
         pass
 
 
-    def bishop_check(self, board, position):
+    
+
+
+    def bishop_queen_check(self, board, position):
         in_check = False
         row, col = self.get_coordinates(position)
         flag = True
@@ -58,7 +61,7 @@ class King(ChessPiece):
         while flag:
             if self.verify_board_row(current_row-1) and self.verify_board_col(current_col-1):
                 piece = board[current_row-1][current_col-1].piece
-                if self.verify_board_piece_for_check(piece, 'bishop'):
+                if self.verify_board_piece_for_check(piece, 'bishop') or self.verify_board_piece_for_check(piece, 'queen'):
                     in_check = True
                     return in_check
                 elif piece:
@@ -76,7 +79,7 @@ class King(ChessPiece):
         while flag:
             if self.verify_board_row(current_row-1) and self.verify_board_col(current_col+1):
                 piece = board[current_row-1][current_col+1]
-                if self.verify_board_piece_for_check(piece, 'bishop'):
+                if self.verify_board_piece_for_check(piece, 'bishop') or self.verify_board_piece_for_check(piece, 'queen'):
                     in_check = True
                     return in_check
                 elif piece:
@@ -94,7 +97,7 @@ class King(ChessPiece):
         while flag:
             if self.verify_board_row(current_row+1) and self.verify_board_col(current_col-1):
                 piece = board[current_row+1][current_col-1].piece
-                if self.verify_board_piece_for_check(piece, 'bishop'):
+                if self.verify_board_piece_for_check(piece, 'bishop') or self.verify_board_piece_for_check(piece, 'queen'):
                     in_check = True
                     return in_check
                 elif piece:
@@ -112,7 +115,7 @@ class King(ChessPiece):
         while flag:
             if self.verify_board_row(current_row+1) and self.verify_board_col(current_col+1):
                 piece = board[current_row+1][current_col+1].piece
-                if self.verify_board_piece_for_check(piece, 'bishop'):
+                if self.verify_board_piece_for_check(piece, 'bishop') or self.verify_board_piece_for_check(piece, 'queen'):
                     in_check = True
                     return in_check
                 elif piece:
@@ -126,7 +129,7 @@ class King(ChessPiece):
         return in_check
 
 
-    def rook_check(self, board, position):
+    def rook_queen_check(self, board, position):
         in_check = False
         row, col = self.get_coordinates(position)
         flag = True
@@ -137,7 +140,7 @@ class King(ChessPiece):
         while flag:
             if self.verify_board_row(current_row-1):
                 piece = board[current_row-1][current_col]
-                if self.verify_board_piece_for_check(piece, 'rook'):
+                if self.verify_board_piece_for_check(piece, 'rook') or self.verify_board_piece_for_check(piece, 'queen'):
                     in_check = True
                     return in_check
                 elif piece:
@@ -153,7 +156,7 @@ class King(ChessPiece):
         while flag:
             if self.verify_board_row(current_row+1):
                 piece = board[current_row+1][current_col]
-                if self.verify_board_piece_for_check(piece, 'rook'):
+                if self.verify_board_piece_for_check(piece, 'rook') or self.verify_board_piece_for_check(piece, 'queen'):
                     in_check = True
                     return in_check
                 elif piece:
@@ -169,7 +172,7 @@ class King(ChessPiece):
         while flag:
             if self.verify_board_col(current_col-1):
                 piece = board[current_row][current_col-1]
-                if self.verify_board_piece_for_check(piece, 'rook'):
+                if self.verify_board_piece_for_check(piece, 'rook') or self.verify_board_piece_for_check(piece, 'queen'):
                     in_check = True
                     return in_check
                 elif piece:
@@ -185,7 +188,7 @@ class King(ChessPiece):
         while flag:
             if self.verify_board_col(current_col+1):
                 piece = board[current_row][current_col+1]
-                if self.verify_board_piece_for_check(piece, 'rook'):
+                if self.verify_board_piece_for_check(piece, 'rook') or self.verify_board_piece_for_check(piece, 'queen'):
                     in_check = True
                     return in_check
                 elif piece:
