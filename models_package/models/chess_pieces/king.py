@@ -47,6 +47,43 @@ class King(ChessPiece):
         pass
 
 
+    def king_check(self, board, position):
+        in_check = False
+        row, col = self.get_coordinates(position)
+
+        # Check above positions for enemy king
+        if self.verify_board_row(row-1):
+            if self.verify_board_col(col-1) and self.verify_board_piece_for_check(board[row-1][col-1].piece, 'king'):
+                return True
+            
+            if self.verify_board_piece_for_check(board[row-1][col].piece, 'king'):
+                return True
+
+            if self.verify_board_col(col+1) and self.verify_board_piece_for_check(board[row-1][col+1].piece, 'king'):
+                return True
+
+        # Check below positions for enemy king
+        if self.verify_board_row(row+1):
+            if self.verify_board_col(col-1) and self.verify_board_piece_for_check(board[row+1][col-1].piece, 'king'):
+                return True
+            
+            if self.verify_board_piece_for_check(board[row+1][col].piece, 'king'):
+                return True
+
+            if self.verify_board_col(col+1) and self.verify_board_piece_for_check(board[row+1][col+1].piece, 'king'):
+                return True
+
+        # Check positions to the left and right for enemy king
+        if self.verify_board_col(col-1) and self.verify_board_piece_for_check(board[row][col-1].piece, 'king'):
+            return True
+        
+        if self.verify_board_col(col+1) and self.verify_board_piece_for_check(board[row][col+1].piece, 'king'):
+            return True
+
+        # No king was found in the neighbouring fields
+        return in_check
+
+
     def knight_check(self, board, position):
         in_check = False
         row, col = self.get_coordinates(position)
@@ -267,7 +304,7 @@ class King(ChessPiece):
         return in_check
 
 
-    def verify_board_piece_for_chess(self, piece, rank):
+    def verify_board_piece_for_check(self, piece, rank):
         if not piece or piece.color == self.color:
             return False
         return piece.rank == rank
