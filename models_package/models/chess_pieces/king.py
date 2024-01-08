@@ -44,7 +44,12 @@ class King(ChessPiece):
 
 
     def test_for_check(self, board, position):
-        pass
+        in_check = False
+        if self.king_check(board, position) or self.knight_check(board, position) or 
+            self.bishop_queen_check(board, position) or self.rook_queen_check(board, position) or
+            self.pawn_check(board, position):
+            in_check = True
+        return in_check
 
 
     def king_check(self, board, position):
