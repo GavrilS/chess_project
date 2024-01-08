@@ -34,8 +34,8 @@ class ChessPiece(ABC):
 
     def get_coordinates(self, position):
         current_coordinates = postion.split(':')
-        int(row) = current_coordinates[0]
-        int(col) = current_coordinates[1]
+        row = int(current_coordinates[0])
+        col = int(current_coordinates[1])
 
         return row, col
 

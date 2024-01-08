@@ -10,7 +10,7 @@ from chess_pieces.king import King
 
 def main():
     black_set = create_chess_set(set_color='black')
-    white_set = create_chess_set(set_color='white')
+    white_set = create_chess_set(set_color='white', start_position='high')
     board = ChessBoard()
     print('*'*40)
     board.populate_board(black_set, white_set)
@@ -20,18 +20,18 @@ def main():
     print('current board coordinates: ', board.get_coordinates())
 
 
-def create_chess_set(set_color='white'):
+def create_chess_set(set_color='white', start_position='low'):
     chess_set = []
     for i in range(8):
-        chess_set.append(Pawn(color=set_color))
+        chess_set.append(Pawn(color=set_color, start_position=start_position))
 
     for i in range(2):
-        chess_set.append(Rook(color=set_color))
-        chess_set.append(Bishop(color=set_color))
-        chess_set.append(Knight(color=set_color))
+        chess_set.append(Rook(color=set_color, start_position=start_position))
+        chess_set.append(Bishop(color=set_color, start_position=start_position))
+        chess_set.append(Knight(color=set_color, start_position=start_position))
     
-    chess_set.append(Queen(color=set_color))
-    chess_set.append(King(color=set_color))
+    chess_set.append(Queen(color=set_color, start_position=start_position))
+    chess_set.append(King(color=set_color, start_position=start_position))
 
     return chess_set
 
