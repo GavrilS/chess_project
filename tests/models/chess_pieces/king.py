@@ -8,22 +8,28 @@ from chess_pieces.king import King
 
 
 def setup_test():
-    chess_set_white = []
-    chess_set_black = []
+    board = ChessBoard()
+    print('========Board Created========')
 
+    # White king for the test
     king_white = King(color='white', start_position='low')
-    chess_set_white.append(king_white)
+    board.get_square(4, 4).piece = king_white
+    
+    # Black pieces for the test
     bishop_black = Bishop('black', 'high')
-    chess_set_black.append(bishop_black)
+    knight_black = Knight('black', 'high')
+    pawn_black = Pawn('black', 'high')
+    queen_black = Queen('black', 'high')
+    board.get_square(3, 4).piece = bishop_black
+    board.get_square(3, 3).piece = knight_black
+    board.get_square(2, 4).piece = queen_black
+    board.get_square(5, 3).piece = pawn_black
 
-    return chess_set_white, chess_set_black
+    return board
 
 
 def main():
-    white_set, black_set = setup_test()
-    board = ChessBoard()
-    board.populate_board(white_set, black_set)
-    print('*'*40)
+    board = setup_test()
     board.status()
 
 

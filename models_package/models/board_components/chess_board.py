@@ -185,6 +185,13 @@ class ChessBoard:
         return self._coordinates[value]
 
 
+    def get_square(self, row, col):
+        try:
+            return self._board[row][col]
+        except Exception as e:
+            print('The specified position could not be returned: ', e)
+
+
 
 if __name__=='__main__':
     print('Testing chess board class creation.')
