@@ -41,7 +41,8 @@ class BoardSquare:
             # return f"{self._position}:{self._color[0]}"
             return f"{self._position}{self._color[0].upper()}"
         # return f"{self._position}:{self._color[0]}:{self._piece}"
-        return f"{self._position}{self._color[0].upper()}:{self._piece}"
+        return f"{self._piece}"
+        # return f"{self._position}{self._color[0].upper()}:{self._piece}"
 
 
     def __repr__(self):
