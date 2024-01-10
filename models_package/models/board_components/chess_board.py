@@ -2,6 +2,7 @@
 from chess_pieces.basic import ChessPiece
 from board_components.board_square import BoardSquare
 
+ALLOWED_POSITIONS = [0, 1, 2, 3, 4, 5, 6, 7]
 ROWS = [1, 2, 3, 4, 5, 6, 7, 8]
 COLS = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']
 # Below color values are used by the old implementation of the board
@@ -190,6 +191,13 @@ class ChessBoard:
             return self._board[row][col]
         except Exception as e:
             print('The specified position could not be returned: ', e)
+
+    
+    def set_square(self, row, col, value):
+        if row in ALLOWED_POSITIONS and col in ALLOWED_POSITIONS:
+            self._board[row][col] = value
+        else:
+            print('Passed a position that is not part of the board...')
 
 
 

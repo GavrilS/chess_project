@@ -7,13 +7,17 @@ from chess_pieces.queen import Queen
 from chess_pieces.king import King
 
 
+KING_POSITION_ROW = 4
+KING_POSITION_COL = 4
+
+
 def setup_test():
     board = ChessBoard()
     print('========Board Created========')
 
     # White king for the test
     king_white = King(color='white', start_position='low')
-    board.get_square(4, 4).piece = king_white
+    board.get_square(KING_POSITION_ROW, KING_POSITION_COL).piece = king_white
     
     # Black pieces for the test
     bishop_black = Bishop('black', 'high')
@@ -28,11 +32,20 @@ def setup_test():
     return board
 
 
-def main():
+def test_king_moves():
     board = setup_test()
+    board.status()
+    wking = board.get_square(KING_POSITION_ROW, KING_POSITION_COL).piece
+    current_position = f"{KING_POSITION_ROW}:{KING_POSITION_COL}"
+
+    for i in range(8):
+        for j in range(8):
+            if wking.move(board, current_position, f"{i}:{j}"):
+                board.set_square(i, j, 'A')
+
+    print('After checking available moves:')
     board.status()
 
 
-
 if __name__=='__main__':
-    main()
+    test_king_moves()
