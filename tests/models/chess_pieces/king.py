@@ -13,11 +13,13 @@ KING_POSITION_COL = 4
 
 def setup_test():
     board = ChessBoard()
-    print('========Board Created========')
+    print('========Board Created========\n\n\n')
 
     # White king for the test
     king_white = King(color='white', start_position='low')
+    white_pawn = Pawn(color='white', start_position='low')
     board.get_square(KING_POSITION_ROW, KING_POSITION_COL).piece = king_white
+    board.get_square(3, 5).piece = white_pawn
     
     # Black pieces for the test
     bishop_black = Bishop('black', 'high')
@@ -37,13 +39,14 @@ def test_king_moves():
     board.status()
     wking = board.get_square(KING_POSITION_ROW, KING_POSITION_COL).piece
     current_position = f"{KING_POSITION_ROW}:{KING_POSITION_COL}"
+    available_moves = wking.check_available_moves(board, current_position)
 
     for i in range(8):
         for j in range(8):
-            if wking.move(board, current_position, f"{i}:{j}"):
+            if f"{i}:{j}" in available_moves:
                 board.set_square(i, j, 'A')
 
-    print('After checking available moves:')
+    print('\n\n\nAfter checking available moves:')
     board.status()
 
 
