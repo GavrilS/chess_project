@@ -15,34 +15,30 @@ class Pawn(ChessPiece):
             if self.verify_board_row(row+1):
                 # if col - 1 >= START_COL and col - 1 < END_COL:
                 if self.verify_board_col(col-1):
-                    # if board[row+1][col-1].piece and board[row+1][col-1].piece.color != self.color:
-                    if self.verify_board_piece(board[row+1][col-1].piece):
+                    if self.verify_board_piece(board.get_square(row+1, col-1).piece):
                         possible_moves.append(str(row+1) + ':' + str(col-1))
 
-                if not board[row+1][col].piece:
+                if not board.get_square(row+1,col).piece:
                     possible_moves.append(str(row+1) + ':' + str(col))
 
                 # if col + 1 > START_COL and col + 1 <= END_COL:
                 if self.verify_board_col(col+1):
-                    # if board[row+1][col+1].piece and board[row+1][col+1].piece.color != self.color:
-                    if self.verify_board_piece(board[row+1][col+1].piece):
+                    if self.verify_board_piece(board.get_square(row+1,col+1).piece):
                         possible_moves.append(str(row+1) + ':' + str(col+1))
         else:
             # if row - 1 >= FINAL_LOW_ROW and row - 1 < FINAL_HIGH_ROW:
             if self.verify_board_row(row-1):
                 # if col - 1 >= START_COL and col - 1 < END_COL:
                 if self.verify_board_col(col-1):
-                    # if board[row-1][col-1].piece and board[row-1][col-1].piece.color != self.color:
-                    if self.verify_board_piece(board[row-1][col-1].piece):
+                    if self.verify_board_piece(board.get_square(row-1,col-1).piece):
                         possible_moves.append(str(row-1) + ':' + str(col-1))
                 
-                if not board[row-1][col].piece:
+                if not board.get_square(row-1,col).piece:
                     possible_moves.append(str(row-1) + ':' + str(col))
 
                 # if col + 1 > START_COL and col + 1 <= END_COL:
                 if self.verify_board_col(col+1):
-                    # if board[row+1][col+1].piece and board[row+1][col+1].piece.color != self.color:
-                    if self.verify_board_piece(board[row+1][col+1].piece):
+                    if self.verify_board_piece(board.get_square(row+1,col+1).piece):
                         possible_moves.append(str(row+1) + ':' + str(col+1))
 
         return possible_moves
