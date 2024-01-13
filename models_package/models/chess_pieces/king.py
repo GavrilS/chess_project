@@ -285,7 +285,7 @@ class King(ChessPiece):
         if self.start_position == 'low':
             if self.verify_board_row(row+1) and self.verify_board_col(col-1):
                 field_piece = board.get_square(row+1, col-1).piece
-                if self.verify_board_piece_for_check(field_piece) and field_piece.rank == 'pawn':
+                if self.verify_board_piece_for_check(field_piece, 'pawn'):
                     in_check = True
                     return in_check
 

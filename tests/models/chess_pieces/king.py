@@ -40,11 +40,16 @@ def test_king_moves():
     wking = board.get_square(KING_POSITION_ROW, KING_POSITION_COL).piece
     current_position = f"{KING_POSITION_ROW}:{KING_POSITION_COL}"
     available_moves = wking.check_available_moves(board, current_position)
+    allowed_positions = []
 
     for i in range(8):
         for j in range(8):
-            if f"{i}:{j}" in available_moves:
-                board.set_square(i, j, 'A')
+            if f"{i}:{j}" in available_moves and not wking.test_for_check(board, f"{i}:{j}"):
+                allowed_positions.append((i, j))
+
+    print('\n\n\nAllowed positions: \n', allowed_positions)
+    for position in allowed_positions:
+        board.set_square(position[0], position[1], 'A')
 
     print('\n\n\nAfter checking available moves:')
     board.status()
