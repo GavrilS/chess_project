@@ -39,6 +39,7 @@ def test_rook_moves():
     current_position = f"{ROOK_POSITION_ROW}:{ROOK_POSITION_COL}"
     available_moves = test_piece.check_available_moves(board, current_position)
     allowed_positions = []
+    print('Available moves: ', available_moves)
 
     for i in range(8):
         for j in range(8):

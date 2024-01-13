@@ -21,8 +21,9 @@ class Rook(ChessPiece):
             if self.verify_board_row(row=current_row-1):
                 if self.verify_board_piece(piece=board.get_square(current_row-1,current_col).piece):
                     possible_moves.append(str(current_row-1) + ':' + str(current_col))
-                    current_row -= 1
-                    flag = True
+                    if not board.get_square(current_row-1,current_col).piece:
+                        current_row -= 1
+                        flag = True
 
         current_row = row
         flag = True
@@ -33,8 +34,9 @@ class Rook(ChessPiece):
             if self.verify_board_row(row=current_row+1):
                 if self.verify_board_piece(piece=board.get_square(current_row+1,current_col).piece):
                     possible_moves.append(str(current_row+1) + ':' + str(current_col))
-                    current_row += 1
-                    flag = True
+                    if not board.get_square(current_row+1,current_col).piece:
+                        current_row += 1
+                        flag = True
         
         current_row = row
         flag = True
@@ -45,8 +47,9 @@ class Rook(ChessPiece):
             if self.verify_board_col(col=current_col-1):
                 if self.verify_board_piece(piece=board.get_square(current_row,current_col-1).piece):
                     possible_moves.append(str(current_row) + ':' + str(current_col-1))
-                    current_col -= 1
-                    flag = True
+                    if not board.get_square(current_row,current_col-1).piece:
+                        current_col -= 1
+                        flag = True
 
         current_col = col
         flag = True
@@ -57,8 +60,9 @@ class Rook(ChessPiece):
             if self.verify_board_col(col=current_col+1):
                 if self.verify_board_piece(piece=board.get_square(current_row,current_col+1).piece):
                     possible_moves.append(str(current_row) + ':' + str(current_col+1))
-                    current_col += 1
-                    flag = True
+                    if not board.get_square(current_row,current_col+1).piece:
+                        current_col += 1
+                        flag = True
 
         return possible_moves
 
