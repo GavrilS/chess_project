@@ -13,34 +13,34 @@ class Knight(ChessPiece):
 
         # Check above positions - row + 2
         if self.verify_board_row(row+2):
-            if self.verify_board_col(col-1) and self.verify_board_piece(board[row+2][col-1].piece):
+            if self.verify_board_col(col-1) and self.verify_board_piece(board.get_square(row+2,col-1).piece):
                 possible_moves.append(str(row+2) + ':' + str(col-1))
 
-            if self.verify_board_col(col+1) and self.verify_board_piece(board[row+2][col+1].piece):
+            if self.verify_board_col(col+1) and self.verify_board_piece(board.get_square(row+2,col+1).piece):
                 possible_moves.append(str(row+2) + ':' + str(col+1))
 
         # Check below positions - row - 2
         if self.verify_board_row(row-2):
-            if self.verify_board_col(col-1) and self.verify_board_piece(board[row-2][col-1].piece):
+            if self.verify_board_col(col-1) and self.verify_board_piece(board.get_square(row-2,col-1).piece):
                 possible_moves.append(str(row-2) + ':' + str(col-1))
 
-            if self.verify_board_col(col+1) and self.verify_board_piece(board[row-2][col+1].piece):
+            if self.verify_board_col(col+1) and self.verify_board_piece(board.get_square(row-2,col+1).piece):
                 possible_moves.append(str(row-2) + ':' + str(col+1))
 
         # Check positions to the left - col - 2
         if self.verify_board_col(col-2):
-            if self.verify_board_row(row-1) and self.verify_board_piece(board[row-1][col-2].piece):
+            if self.verify_board_row(row-1) and self.verify_board_piece(board.get_square(row-1,col-2).piece):
                 possible_moves.append(str(row-1) + ':' + str(col-2))
 
-            if self.verify_board_row(row+1) and self.verify_board_piece(board[row+1][col-2].piece):
+            if self.verify_board_row(row+1) and self.verify_board_piece(board.get_square(row+1,col-2).piece):
                 possible_moves.append(str(row+1) + ':' + str(col-2))
 
         # Check positions to the right - col + 2
         if self.verify_board_col(col+2):
-            if self.verify_board_row(row-1) and self.verify_board_piece(board[row-1][col+2].piece):
+            if self.verify_board_row(row-1) and self.verify_board_piece(board.get_square(row-1,col+2).piece):
                 possible_moves.append(str(row-1) + ':' + str(col+2))
 
-            if self.verify_board_row(row+1) and self.verify_board_piece(board[row+1][col+2].piece):
+            if self.verify_board_row(row+1) and self.verify_board_piece(board.get_square(row+1,col+2).piece):
                 possible_moves.append(str(row+1) + ':' + str(col+2))
 
         return possible_moves
