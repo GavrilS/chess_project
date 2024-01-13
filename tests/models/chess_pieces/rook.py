@@ -17,7 +17,9 @@ def setup_test():
 
     # White pawn for the test
     white_piece = Rook(color='white', start_position='low')
+    white_knight = Knight(color='white', start_position='low')
     board.get_square(ROOK_POSITION_ROW, ROOK_POSITION_COL).piece = white_piece
+    board.get_square(4, 1).piece = white_knight
     
     # Black pieces for the test
     bishop_black = Bishop('black', 'high')
